@@ -88,10 +88,19 @@ class TestBooksCollector:
         collector = BooksCollector()
 
         title = 'Преступление и наказание'
-        collector.books_genre['Преступление и наказание'] = ''
+        collector.books_genre[title] = ''
 
         assert isinstance(collector.get_books_genre(), dict)
         assert title in collector.get_books_genre()
+
+    def test_get_book_genre(self):
+        collector = BooksCollector()
+
+        title = 'Капитанская дочка'
+        genre = 'Детективы'
+        collector.books_genre[title] = genre
+
+        assert collector.get_book_genre(title) == genre
 
     def test_get_books_for_children_filters_age_rating(self):
         collector = BooksCollector()
